@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'nz.ac.wgtn'
+version = '1.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+application {
+    mainClass = 'assignment1.Assignment1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Align all JUnit dependencies to the same version
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+
+    // JUnit 5 API and engine
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine' 
+
+    // For capturing System.out/System.err/System.exit etc.
+    testImplementation 'uk.org.webcompere:system-stubs-jupiter:2.1.6'
+
+    // Optional: IDE/Test report integration
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+
+    // Detailed test logging
+    testLogging {
+        events = ["passed", "skipped", "failed", "standardOut", "standardError"]
+        showStandardStreams = true
+        exceptionFormat = "full"
+    }
+}

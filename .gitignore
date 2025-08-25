@@ -1,0 +1,55 @@
+# === Java ===
+*.class
+
+# === Build and dependency outputs ===
+build/
+.gradle/
+
+# Gradle wrapper JAR should be included — ignore others
+!/gradle/wrapper/gradle-wrapper.jar
+
+# === Logs and debugging ===
+*.log
+hs_err_pid*.log
+replay_pid*.log
+
+# === IDEs ===
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+*.launch
+
+# VS Code
+.vscode/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# === OS/Editor/Tooling artifacts ===
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.bak
+
+# === Gradle local properties ===
+# (Useful if you store secrets or machine-specific settings)
+gradle.properties
+
+# === Test-specific files ===
+# (Optional: if system stubs or other tools generate temp test files)
+test-output/
