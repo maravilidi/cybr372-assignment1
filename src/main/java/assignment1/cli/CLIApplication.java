@@ -29,9 +29,10 @@ public class CLIApplication {
         // -in mora da postoji
         String inPath = args.getInputPath();
         if (inPath == null || inPath.isBlank()) {
-            System.err.println("Error: -in is required");
+            System.err.println("Error: missing input file (-in)");
             return StatusCode.INVALID_ARGUMENTS;
         }
+
         java.nio.file.Path in = java.nio.file.Path.of(inPath);
         if (!java.nio.file.Files.exists(in)) {
             System.err.println("Error: input file not found: " + inPath);
