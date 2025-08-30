@@ -53,19 +53,19 @@ public class CLIApplication {
         args.setCipher(cipher);
 
         // IV potreban osim za ECB
-        boolean needsIv = !cipher.endsWith("-ecb");
-        if (needsIv) {
-            String ivPath = args.getIvPath();
-            if (ivPath == null || ivPath.isBlank()) {
-                System.err.println("Error: -iv is required for " + cipher);
-                return StatusCode.FILE_NOT_FOUND;
-            }
-            java.nio.file.Path iv = java.nio.file.Path.of(ivPath);
-            if (!java.nio.file.Files.exists(iv)) {
-                System.err.println("Error: IV file not found: " + ivPath);
-                return StatusCode.FILE_NOT_FOUND;
-            }
-        }
+        // boolean needsIv = !cipher.endsWith("-ecb");
+        // if (needsIv) {
+        //     String ivPath = args.getIvPath();
+        //     if (ivPath == null || ivPath.isBlank()) {
+        //         System.err.println("Error: -iv is required for " + cipher);
+        //         return StatusCode.FILE_NOT_FOUND;
+        //     }
+        //     java.nio.file.Path iv = java.nio.file.Path.of(ivPath);
+        //     if (!java.nio.file.Files.exists(iv)) {
+        //         System.err.println("Error: IV file not found: " + ivPath);
+        //         return StatusCode.FILE_NOT_FOUND;
+        //     }
+        // }
 
         // KEY vs PASS (key ima prednost)
         String keyPath = args.getKeyPath();

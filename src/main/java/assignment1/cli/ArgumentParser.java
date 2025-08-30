@@ -14,10 +14,16 @@ public class ArgumentParser {
 
     public static ArgumentBundle parse(String[] args) {
         ArgumentBundle bundle = new ArgumentBundle();
+        int start = 0;
+        if (args != null && args.length > 0) {
+            String first = args[0].toLowerCase();
+            if ("enc".equals(first) || "dec".equals(first)) {
+                bundle.setMode(first); // <<< sačuvaj enc/dec
+                start = 1; // <<< preskoči ga u for-petlji
+            }
+        }
 
-
-        
-        for (int i = 0; i < args.length; i++) {
+        for (int i = start; i < args.length; i++) {
             // -in (obavezno)
             if ("-in".equals(args[i]) && i + 1 < args.length) {
                 bundle.setInputPath(args[++i]);
