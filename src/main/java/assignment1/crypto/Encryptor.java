@@ -69,22 +69,31 @@ public class Encryptor {
                     break;
 
                 case "cbc":
-                    // CBC zahteva IV dužine 16 bajtova; takođe koristi PKCS5Padding
+                    // CBC zahteva IV duzine 16 bajtova; koristi PKCS5Padding
                     transformation = "AES/CBC/PKCS5Padding";
                     requiresIv = true;
                     break;
 
                 case "ctr":
-                    // CTR je strim-mod: nema padding (NoPadding), ali i dalje traži IV/nonce od 16
-                    // bajtova
-                    // Napomena: u našem kodu ispod već postoji provera dužine IV=16 kada
-                    // requiresIv==true
+                    // CTR je strim-mod: nema padding; IV/nonce = 16 bajtova
                     transformation = "AES/CTR/NoPadding";
                     requiresIv = true;
                     break;
 
+                case "cfb":
+                    // CFB je strim-mod: nema padding; IV = 16 bajtova
+                    transformation = "AES/CFB/NoPadding";
+                    requiresIv = true;
+                    break;
+
+                case "ofb":
+                    // OFB je strim-mod: nema padding; IV = 16 bajtova
+                    transformation = "AES/OFB/NoPadding";
+                    requiresIv = true;
+                    break;
+
                 default:
-                    // Za sve ostale modove (cfb/ofb/gcm) za sada prijavi da nije podržano
+                    // Za GCM cemo poseban korak; sve ostalo trenutno nije podrzano
                     System.err.println("Error: unsupported cipher mode: " + mode);
                     return StatusCode.UNSUPPORTED_CIPHER;
             }
